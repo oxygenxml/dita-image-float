@@ -4,7 +4,8 @@ The plugin works with both DITA-OT 1.8 and 2.x. It requires for publishing eithe
 Example:
 
 The DITA structure:
-   <p><image href="../../images/Iris_sanguinea.jpg" outputclass="float_right"/>some text</p>
+
+      <p><image href="../../images/Iris_sanguinea.jpg" outputclass="float_right"/>some text</p>
 
 will present in the PDF the image floated on the right hand of the paragraph contents.
 The possible values when publishing to both XHTML and PDF are "float_left" and "float_right". 
