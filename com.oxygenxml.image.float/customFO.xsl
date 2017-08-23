@@ -9,7 +9,6 @@ available in the base directory of this plugin.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     version="2.0"
-    xmlns:saxon="http://saxon.sf.net/"
     xmlns:fo="http://www.w3.org/1999/XSL/Format"
     xmlns:opentopic-func="http://www.idiominc.com/opentopic/exsl/function"
   >
