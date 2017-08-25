@@ -10,8 +10,19 @@ available in the base directory of this plugin.
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     version="2.0"
   >
-  <xsl:template match="*[contains(@class, ' topic/image ')][starts-with(@outputclass, 'float_')]">
-    <div style="float:{substring-after(@outputclass, 'float_')};margin:2 2 2 2">
+  <xsl:template match="*[contains(@class, ' topic/image ')]
+    [contains(@outputclass, 'float-left')
+    or contains(@outputclass, 'float-right')
+    ]">
+    <div>
+      <xsl:choose>
+        <xsl:when test="contains(@outputclass, 'float-left')">
+          <xsl:attribute name="style">float:left;margin:2 2 2 2</xsl:attribute>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="style">float:right;margin:2 2 2 2</xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:next-match/>
     </div>
   </xsl:template>

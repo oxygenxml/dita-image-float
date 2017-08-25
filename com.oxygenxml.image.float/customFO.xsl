@@ -12,9 +12,19 @@ available in the base directory of this plugin.
     xmlns:fo="http://www.w3.org/1999/XSL/Format"
     xmlns:opentopic-func="http://www.idiominc.com/opentopic/exsl/function"
   >
-  <xsl:template match="*[contains(@class,' topic/image ')][starts-with(@outputclass, 'float_')]">
+  <xsl:template match="*[contains(@class,' topic/image ')][contains(@outputclass, 'float-left')
+    or contains(@outputclass, 'float-right')
+    ]">
     <xsl:apply-templates select="*[contains(@class,' ditaot-d/ditaval-startprop ')]" mode="outofline"/>
-    <fo:float float="{substring-after(@outputclass, 'float_')}">
+    <fo:float>
+      <xsl:choose>
+        <xsl:when test="contains(@outputclass, 'float-left')">
+          <xsl:attribute name="float">left</xsl:attribute>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="float">right</xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:choose>
         <xsl:when test="empty(@href)"/>
         <xsl:otherwise>
@@ -28,11 +38,6 @@ available in the base directory of this plugin.
               <xsl:with-param name="width" select="@width"/>
             </xsl:apply-templates>
           </fo:block>
-          <xsl:if test="$artLabel='yes'">
-            <fo:block>
-              <xsl:apply-templates select="." mode="image.artlabel"/>
-            </fo:block>
-          </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
     </fo:float>
